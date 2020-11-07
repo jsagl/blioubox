@@ -3,11 +3,41 @@ import axios from "axios";
 import autocomplete from "autocomplete.js";
 
 export default class extends Controller {
-    static targets = ['name', 'kind', 'brewery', 'breweryUrl', 'country', 'city', 'description', 'abv', 'ibu', 'logoUrl', 'beerUrl'];
+    static targets = [
+        'spinner', 'stuff',
+        'name', 'kind', 'brewery', 'breweryUrl', 'country', 'city', 'description', 'abv', 'ibu', 'logoUrl', 'beerUrl'
+    ];
+
+    connect() {
+        $('#searchBeerModal').on('hide.bs.modal', (event) => {
+            setTimeout(
+                () => {
+                    this.spinnerTarget.classList.add('hidden')
+                    this.stuffTarget.classList.add('hidden')
+                },
+                500
+            )
+        })
+    }
+
+
+    showStuff(event) {
+
+    }
 
     fill(event) {
+        const spinner = this.spinnerTarget
+        const stuff = this.stuffTarget
+        spinner.classList.remove('hidden')
+        setTimeout(
+            () => {
+                spinner.classList.add('hidden');
+                stuff.classList.remove('hidden')
+            },
+            1000
+        )
+
         axios.get("/beers/external_beer_information", { params: event._args[0] }).then((response) => {
-            console.log(response.data)
             this.breweryUrlTarget.value = response.data['brewery_page_url']
             this.countryTarget.value = response.data['brewery_country']
             this.cityTarget.value = response.data['brewery_city']

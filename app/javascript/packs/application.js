@@ -16,4 +16,11 @@ require("channels")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+// stimulus controllers
 import "controllers"
+
+// stylesheets
+import '../stylesheets/application'
+
+// bootstrap
+require("bootstrap")
