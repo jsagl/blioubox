@@ -1,0 +1,78 @@
+
+<div style="margin: auto; width: 25%; padding: 10px">
+  <h1>Autocomplete</h1>
+  <div data-controller="autocomplete">
+    <input data-target="autocomplete.field" />
+  </div>
+</div>
+
+<div data-controller="modal" >
+<!--  <button data-action="click->modal#hide">hide!</button>-->
+  <div data-action="autocomplete:selected@window->modal#fill"></div>
+
+  <%= form_with(model: Beer.new, remote: true) do |f| %>
+    <%= f.text_field :name, placeholder: 'Beer name', data: {target: "modal.name"} %><br />
+    <%= f.text_field :kind, placeholder: 'Beer type', data: {target: "modal.kind"} %><br />
+    <%= f.text_field :brewery_name, placeholder: 'Brewery', data: {target: "modal.brewery"} %><br />
+    <%= f.text_field :brewery_url, placeholder: 'Brewery url', data: {target: "modal.breweryUrl"} %><br />
+    <%= f.text_field :brewery_country, placeholder: 'Country', data: {target: "modal.country"} %><br />
+    <%= f.text_field :brewery_city, placeholder: 'City', data: {target: "modal.city"} %><br />
+    <%= f.text_field :description, placeholder: 'Description', data: {target: "modal.description"} %><br />
+    <%= f.text_field :abv, placeholder: 'ABV', data: {target: "modal.abv"} %><br />
+    <%= f.text_field :ibu, placeholder: 'IBU', data: {target: "modal.ibu"} %><br />
+    <%= f.text_field :logo_url, placeholder: 'Logo url', data: {target: "modal.logoUrl"} %><br />
+    <%= f.text_field :beer_url, placeholder: 'Beer url', data: {target: "modal.beerUrl"} %><br />
+    <%= f.text_field :review, placeholder: 'Review', data: {target: "modal.review"} %><br />
+    <%= f.text_field :rating, placeholder: 'Rating', data: {target: "modal.rating"} %><br />
+
+    <%= f.submit %>
+  <% end %>
+
+  <div
+    class="hidden-modal"
+    data-action="ajax:success@window->modal#append"
+    data-target="modal.success"
+  >Success</div>
+</div>
+
+
+
+<ul>
+  <% @beers.each do |beer| %>
+    <li><%= beer.name %></li>
+  <% end %>
+</ul>
+
+
+<style>
+    .hidden-modal {
+        display: none;
+    }
+
+    .algolia-autocomplete {
+        width: 100%;
+    }
+    .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+        width: 100%;
+    }
+    .algolia-autocomplete .aa-hint {
+        color: #999;
+    }
+    .algolia-autocomplete .aa-dropdown-menu {
+        width: 100%;
+        background-color: #fff;
+        border: 1px solid #999;
+        border-top: none;
+    }
+    .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+        cursor: pointer;
+        padding: 5px 4px;
+    }
+    .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+        background-color: #B2D7FF;
+    }
+    .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+        font-weight: bold;
+        font-style: normal;
+    }
+</style>
