@@ -4,8 +4,9 @@ class BeersController < ApplicationController
   end
 
   def create
-    beer = Beer.create!(permitted_params)
-    render json: beer.to_json
+    Beer.create!(permitted_params)
+
+    redirect_to root_path
   end
 
   def external_beer_information
@@ -18,19 +19,20 @@ class BeersController < ApplicationController
   private
 
   def permitted_params
-    params.require(:beer).permit(:name)
-  end
-
-  def selected_beer_params
-    params.permit(
+    params.require(:beer).permit(
       :name,
       :kind,
-      :bid,
+      :description,
+      :abv,
+      :ibu,
       :logo_url,
       :beer_url,
-      :brewery,
-      :brewery_id,
-      :abv,
+      :brewery_name,
+      :brewery_city,
+      :brewery_country,
+      :brewery_url,
+      :review,
+      :rating,
     )
   end
 

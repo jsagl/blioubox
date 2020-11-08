@@ -1,55 +1,94 @@
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#searchBeerModal">
-  New beer
-</button>
+<div class="container">
+  <div data-controller="autocomplete" data-target="autocomplete.full">
+    <input data-target="autocomplete.field" />
+  </div>
+</div>
 
-<!-- Modal -->
-<div class="modal fade" id="searchBeerModal" tabindex="-1" aria-labelledby="searchBeerModalLabel" aria-hidden="true" data-controller="modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="searchBeerModalLabel">New beer</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <div data-controller="autocomplete">
-            <input data-target="autocomplete.field" />
-          </div>
-        <div data-action="autocomplete:selected@window->modal#fill">
-          <div class="spinner-border text-primary hidden" role="status" data-target="modal.spinner">
-            <span class="sr-only">Loading...</span>
-          </div>
-          <div class="hidden" data-target="modal.stuff">
-            <%= form_with(model: Beer.new, remote: true) do |f| %>
-              <%= f.text_field :name, placeholder: 'Beer name', data: {target: "modal.name"} %><br />
-              <%= f.text_field :kind, placeholder: 'Beer type', data: {target: "modal.kind"} %><br />
-              <%= f.text_field :brewery_name, placeholder: 'Brewery', data: {target: "modal.brewery"} %><br />
-              <%= f.text_field :brewery_url, placeholder: 'Brewery url', data: {target: "modal.breweryUrl"} %><br />
-              <%= f.text_field :brewery_country, placeholder: 'Country', data: {target: "modal.country"} %><br />
-              <%= f.text_field :brewery_city, placeholder: 'City', data: {target: "modal.city"} %><br />
-              <%= f.text_field :description, placeholder: 'Description', data: {target: "modal.description"} %><br />
-              <%= f.text_field :abv, placeholder: 'ABV', data: {target: "modal.abv"} %><br />
-              <%= f.text_field :ibu, placeholder: 'IBU', data: {target: "modal.ibu"} %><br />
-              <%= f.text_field :logo_url, placeholder: 'Logo url', data: {target: "modal.logoUrl"} %><br />
-              <%= f.text_field :beer_url, placeholder: 'Beer url', data: {target: "modal.beerUrl"} %><br />
-              <%= f.text_field :review, placeholder: 'Review', data: {target: "modal.review"} %><br />
-              <%= f.text_field :rating, placeholder: 'Rating', data: {target: "modal.rating"} %><br />
 
-              <%= f.submit %>
-            <% end %>
-          </div>
+<div class="container">
+  <div class="row">
+    <div class="col-12 p-4" data-controller="beer" data-action="autocomplete:selected@window->beer#prepareBeerInformation">
+      <div id="beer-information" class="hidden beer-card w-100" data-target="beer.information">
+        <div class="mb-2 row justify-content-start">
+            <div class="beer-card-title align-self-center col-auto" data-target="beer.name"></div>
+            <div class="beer-card-subtitle align-self-center col-auto" data-target="beer.brewery"></div>
         </div>
+          <div class="mb-3 d-flex align-items-center">
+            <img class="beer-card-img mr-2 mr-sm-3" src="" alt="beer-logo" data-target="beer.logoUrl">
+              <div class="row justify-content-start">
+                <div class="my-1 d-flex col-auto">
+                  <div class="beer-card-detail-bubble mr-3" data-target="beer.abv"></div>
+                  <div class="beer-card-detail-bubble" data-target="beer.ibu"></div>
+                </div>
+                <div class="my-1 beer-card-subtitle col-md-6 col-12 align-self-center" data-target="beer.kind"></div>
+                <div class="my-1 beer-card-text col-12" data-target="beer.location"></div>
+              </div>
+          </div>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+          <div class="beer-card-text" data-target="beer.description"></div>
+        <div class="row justify-content-end align-items-center">
+          <div class="my-3 beer-card-rating col-auto">
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+            <i class="far fa-star"></i>
+          </div>
+
+          <%= form_with(model: Beer.new, local: true) do |f| %>
+            <%= f.hidden_field :rating, placeholder: 'Rating', data: {target: "beer.ratingForm"} %>
+            <%= f.hidden_field :name, placeholder: 'Beer name', data: {target: "beer.nameForm"} %>
+            <%= f.hidden_field :kind, placeholder: 'Beer type', data: {target: "beer.kindForm"} %>
+            <%= f.hidden_field :beer_url, placeholder: 'Beer url', data: {target: "beer.beerUrlForm"} %>
+            <%= f.hidden_field :logo_url, placeholder: 'Logo url', data: {target: "beer.logoUrlForm"} %>
+            <%= f.hidden_field :brewery_name, placeholder: 'Brewery', data: {target: "beer.breweryForm"} %>
+            <%= f.hidden_field :abv, placeholder: 'ABV', data: {target: "beer.abvForm"} %>
+            <%= f.hidden_field :brewery_url, placeholder: 'Brewery url', data: {target: "beer.breweryUrlForm"} %>
+            <%= f.hidden_field :brewery_country, placeholder: 'Country', data: {target: "beer.countryForm"} %>
+            <%= f.hidden_field :brewery_city, placeholder: 'City', data: {target: "beer.cityForm"} %>
+            <%= f.hidden_field :description, placeholder: 'Description', data: {target: "beer.descriptionForm"} %>
+            <%= f.hidden_field :ibu, placeholder: 'IBU', data: {target: "beer.ibuForm"} %>
+
+            <%= f.submit 'Add to favorites', class: "my-3 beer-card-button col-auto" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+<!--<div data-controller="beer" data-action="autocomplete:selected@window->beer#prepareBeerInformation">-->
+<!--  <div id="beer-information" class="hidden" data-target="beer.information">-->
+<!--    <img src="" alt="" data-target="beer.logoUrl">-->
+<!--    <div data-target="beer.name"></div>-->
+
+    <%#= form_with(model: Beer.new, local: true) do |f| %>
+      <%#= f.text_field :review, placeholder: 'Review', data: {target: "beer.reviewForm"} %>
+      <%#= f.text_field :rating, placeholder: 'Rating', data: {target: "beer.ratingForm"} %>
+
+      <%#= f.hidden_field :name, placeholder: 'Beer name', data: {target: "beer.nameForm"} %>
+      <%#= f.hidden_field :kind, placeholder: 'Beer type', data: {target: "beer.kindForm"} %>
+      <%#= f.hidden_field :beer_url, placeholder: 'Beer url', data: {target: "beer.beerUrlForm"} %>
+      <%#= f.hidden_field :logo_url, placeholder: 'Logo url', data: {target: "beer.logoUrlForm"} %>
+      <%#= f.hidden_field :brewery_name, placeholder: 'Brewery', data: {target: "beer.breweryForm"} %>
+      <%#= f.hidden_field :abv, placeholder: 'ABV', data: {target: "beer.abvForm"} %>
+      <%#= f.hidden_field :brewery_url, placeholder: 'Brewery url', data: {target: "beer.breweryUrlForm"} %>
+      <%#= f.hidden_field :brewery_country, placeholder: 'Country', data: {target: "beer.countryForm"} %>
+      <%#= f.hidden_field :brewery_city, placeholder: 'City', data: {target: "beer.cityForm"} %>
+      <%#= f.hidden_field :description, placeholder: 'Description', data: {target: "beer.descriptionForm"} %>
+      <%#= f.hidden_field :ibu, placeholder: 'IBU', data: {target: "beer.ibuForm"} %>
+
+      <%#= f.submit class: "btn btn-primary" %>
+    <%# end %>
+<!--  </div>-->
+<!--</div>-->
 
 
 
@@ -62,10 +101,6 @@
 
 
 <style>
-    .hidden {
-        display: none;
-    }
-
     .algolia-autocomplete {
         width: 100%;
     }

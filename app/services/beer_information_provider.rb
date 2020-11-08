@@ -21,6 +21,7 @@ module BeerInformationProvider
     return {} unless response.success?
 
     JSON.parse(response.body)['hits'].first
+    # {}
   end
 
   def self.parsed_beer_information(url)
@@ -30,5 +31,6 @@ module BeerInformationProvider
         description: document.css('.beer-descrption-read-less').inner_text[0...-11],
         ibu: document.css('.ibu').inner_text&.to_i,
     }
+    # {description: 'blabla'}
   end
 end

@@ -24,3 +24,6 @@ import '../stylesheets/application'
 
 // bootstrap
 require("bootstrap")
+
+// fontawesome
+import '@fortawesome/fontawesome-free/js/all'
