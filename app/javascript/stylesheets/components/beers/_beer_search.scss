@@ -39,6 +39,15 @@
   height: 32px;
   display: flex;
   align-items: center;
+  transition: width 0.2s linear, opacity 0.1s step-end;
+  width: 60px;
+}
+
+.search-cancel-hidden {
+  width: 0;
+  opacity: 0;
+  transition: width 0.2s linear, opacity 0.1s step-end;
+  overflow: hidden;
 }
 
 .search-cancel-btn {

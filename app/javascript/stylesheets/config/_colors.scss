@@ -1,8 +1,15 @@
+// My colors
 $primary-color: #5956E9;
 $primary-color-light: #7074ef;
+$primary-color-lighter: #acaff6;
 $primary-color-shadow: #c7c4f7;
 $complementary-color: #FFDC60;
 $complementary-color-light: #feefb9;
 
 $dark-grey: #7e7e7e;
 $mid-grey: #a2a2a2;
+
+// Overriding bootstrap colors
+$theme-colors: (
+  "primary": $primary-color,
+);

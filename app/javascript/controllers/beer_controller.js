@@ -1,5 +1,6 @@
 import { Controller } from "stimulus";
 import axios from "axios";
+import {hideSpinner, toggleSpinner} from "../components/spinner";
 
 export default class extends Controller {
     static targets = [
@@ -12,6 +13,10 @@ export default class extends Controller {
 
     prepareBeerInformation(event) {
         const beer = event._args[0]
+        if (!this.informationTarget.classList.contains('hidden')) {
+            this.hideBeer()
+        }
+
         this.fetchBeerInformation(beer)
     }
 
@@ -42,35 +47,16 @@ export default class extends Controller {
         this.logoUrlTarget.src = beer['logo_url']
     }
 
-    toggleSpinner() {
-        const parent = this.informationTarget.parentNode
-        let spinner = parent.querySelector('.spinner-border')
-
-        if (spinner && spinner.classList.contains('hidden')) {
-            spinner.classList.remove('hidden')
-        }
-
-        if (!spinner) {
-            parent.innerHTML += '' +
-                '<div class="spinner-border text-primary" role="status">' +
-                    '<span class="sr-only">Loading...</span>' +
-                '</div>'
-            spinner = parent.querySelector('.spinner-border')
-        }
-
-        return spinner
-    }
-
-    hideSpinner(spinner) {
-        spinner.classList.add('hidden');
-    }
-
     displayBeer() {
         this.informationTarget.classList.remove('hidden')
     }
 
+    hideBeer() {
+        this.informationTarget.classList.add('hidden')
+    }
+
     fetchBeerInformation(beer) {
-        const spinner = this.toggleSpinner()
+        const spinner = toggleSpinner(this.informationTarget)
         axios
             .get("/beers/external_beer_information", { params: beer })
             .then(
@@ -78,7 +64,7 @@ export default class extends Controller {
                     const details = {...beer, ...response.data}
                     this.fillForm(details)
                     this.presentBeer(details)
-                    this.hideSpinner(spinner)
+                    hideSpinner(spinner)
                     this.displayBeer()
                 }
             );

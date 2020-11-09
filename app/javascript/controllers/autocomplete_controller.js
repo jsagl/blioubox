@@ -3,7 +3,7 @@ import axios from "axios";
 import autocomplete from "autocomplete.js";
 
 export default class extends Controller {
-    static targets = ["field", "full"];
+    static targets = ["field", "full", "cancel"];
 
     search(query, callback) {
         axios.get("/autocomplete", { params: { query } }).then((response) => {
@@ -32,7 +32,10 @@ export default class extends Controller {
             this.ac.autocomplete.setVal('');
             // this.fullTarget.classList.add('hidden');
         }).on("autocomplete:closed", (event, suggestion, dataset, context) => {
+            this.cancelTarget.classList.add('search-cancel-hidden')
             this.ac.autocomplete.setVal('');
+        }).on("autocomplete:opened", (event, suggestion, dataset, context) => {
+            this.cancelTarget.classList.remove('search-cancel-hidden')
         });
     }
 

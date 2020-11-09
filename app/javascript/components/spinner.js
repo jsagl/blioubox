@@ -8,20 +8,19 @@ function toggleSpinner(hidden_target) {
 
     if (!spinner) {
         parent.innerHTML += '' +
-            '<div class="spinner-border text-primary" role="status" data-target="modal.spinner">' +
-                '<span class="sr-only">Loading...</span>' +
+            '<div class="d-flex w-100 align-items-center justify-content-center">' +
+                '<div class="spinner-border text-primary" role="status">' +
+                    '<span class="sr-only">Loading...</span>' +
+                '</div>' +
             '</div>'
         spinner = parent.querySelector('.spinner-border')
     }
 
-
-    setTimeout(
-        () => {
-            spinner.classList.add('hidden');
-            $(`#${hidden_target.id}`)[0].classList.remove('hidden')
-        },
-        1000
-    )
+    return spinner
 }
 
-export { toggleSpinner }
+function hideSpinner(spinner) {
+    spinner.classList.add('hidden');
+}
+
+export { toggleSpinner, hideSpinner }
