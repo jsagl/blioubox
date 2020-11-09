@@ -1,9 +1,13 @@
-<br/>
-<div class="container">
+<div>
+  <%= image_pack_tag 'media/images/blioubox_logo.png', class: 'blioubox-logo' %>
+</div>
+
+
+<div class="container search-container">
   <div class="search-input-container" data-controller="autocomplete" data-target="autocomplete.full">
     <div class="d-flex">
       <div class="search-icon"><i class="fas fa-search"></i></div>
-      <input class="search-input" data-target="autocomplete.field" />
+      <input class="search-input" placeholder="Find a beer" data-target="autocomplete.field" />
       <div class="search-cancel-btn-container search-cancel-hidden" data-target="autocomplete.cancel">
         <button class="search-cancel-btn">Cancel</button>
       </div>
@@ -76,10 +80,8 @@
     </div>
 </div>
 
-<button class="btn btn-primary">hello</button>
-
-<ul>
-  <% @beers.each do |beer| %>
-    <li><%= beer.name %></li>
-  <% end %>
-</ul>
+<!--<ul>-->
+  <%# @beers.each do |beer| %>
+<!--    <li><%#= beer.name %></li>-->
+  <%# end %>
+<!--</ul>-->

@@ -27,3 +27,6 @@ require("bootstrap")
 
 // fontawesome
 import '@fortawesome/fontawesome-free/js/all'
+
+//images
+require.context('../images', true)
