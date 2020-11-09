@@ -1,20 +1,27 @@
+<br/>
 <div class="container">
-  <div data-controller="autocomplete" data-target="autocomplete.full">
-    <input data-target="autocomplete.field" />
+  <div class="search-input-container" data-controller="autocomplete" data-target="autocomplete.full">
+    <div class="d-flex">
+      <div class="search-icon"><i class="fas fa-search"></i></div>
+      <input class="search-input" data-target="autocomplete.field" />
+      <div class="search-cancel-btn-container">
+        <button class="search-cancel-btn">Cancel</button>
+      </div>
+    </div>
   </div>
 </div>
 
+<br>
 
 <div class="container">
-  <div class="row">
-    <div class="col-12 p-4" data-controller="beer" data-action="autocomplete:selected@window->beer#prepareBeerInformation">
+    <div class="" data-controller="beer" data-action="autocomplete:selected@window->beer#prepareBeerInformation">
       <div id="beer-information" class="hidden beer-card w-100" data-target="beer.information">
-        <div class="mb-2 row justify-content-start">
+        <div class="row justify-content-start">
             <div class="beer-card-title align-self-center col-auto" data-target="beer.name"></div>
             <div class="beer-card-subtitle align-self-center col-auto" data-target="beer.brewery"></div>
         </div>
-          <div class="mb-3 d-flex align-items-center">
-            <img class="beer-card-img mr-2 mr-sm-3" src="" alt="beer-logo" data-target="beer.logoUrl">
+          <div class="mb-2 d-flex align-items-center">
+            <img class="beer-card-img mr-3" src="" alt="beer-logo" data-target="beer.logoUrl">
               <div class="row justify-content-start">
                 <div class="my-1 d-flex col-auto">
                   <div class="beer-card-detail-bubble mr-3" data-target="beer.abv"></div>
@@ -54,7 +61,6 @@
         </div>
       </div>
     </div>
-  </div>
 </div>
 
 
@@ -98,33 +104,3 @@
     <li><%= beer.name %></li>
   <% end %>
 </ul>
-
-
-<style>
-    .algolia-autocomplete {
-        width: 100%;
-    }
-    .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
-        width: 100%;
-    }
-    .algolia-autocomplete .aa-hint {
-        color: #999;
-    }
-    .algolia-autocomplete .aa-dropdown-menu {
-        width: 100%;
-        background-color: #fff;
-        border: 1px solid #999;
-        border-top: none;
-    }
-    .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
-        cursor: pointer;
-        padding: 5px 4px;
-    }
-    .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
-        background-color: #B2D7FF;
-    }
-    .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
-        font-weight: bold;
-        font-style: normal;
-    }
-</style>

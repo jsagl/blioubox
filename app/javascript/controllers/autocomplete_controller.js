@@ -19,13 +19,20 @@ export default class extends Controller {
                 debounce: 200,
                 templates: {
                     suggestion: function (suggestion) {
-                        return `${suggestion.name} - ${suggestion.brewery}`;
+                        return `
+                        <div class="d-flex align-items-center">
+                            <img src="${suggestion.logo_url}" alt="beer-logo" style="width: 20px; height: 20px; margin-left: -32px; margin-right: 10px"/>
+                            <div>${suggestion.name} - ${suggestion.brewery}</div>
+                        </div>
+                        `;
                     },
                 },
             },
         ]).on("autocomplete:selected", (event, suggestion, dataset, context) => {
             this.ac.autocomplete.setVal('');
-            this.fullTarget.classList.add('hidden');
+            // this.fullTarget.classList.add('hidden');
+        }).on("autocomplete:closed", (event, suggestion, dataset, context) => {
+            this.ac.autocomplete.setVal('');
         });
     }
 

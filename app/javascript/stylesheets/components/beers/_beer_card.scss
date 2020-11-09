@@ -1,7 +1,8 @@
 .beer-card {
   background-color: white;
   padding: 30px 40px;
-  border-radius: 40px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 8px rgb(240,240,240), -1px -1px 5px rgb(240,240,240);
 }
 
 .beer-card-title {
