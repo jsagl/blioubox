@@ -1,3 +1,48 @@
-<% @beers.each do |beer| %>
-  <p><%= beer.name %></p>
-<% end %>
+<div class="container favorites-container" data-controller="beer">
+  <% @beers.each do |beer| %>
+    <div class="position-relative my-2 beer-card beer-card-retracted w-100">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex">
+            <div class="beer-card-title align-self-center col-auto"><%= beer.name %></div>
+            <div class="beer-card-subtitle align-self-center col-auto"><%= beer.brewery_name %></div>
+          </div>
+          <div class="d-flex align-items-center">
+            <div class="beer-card-rating mr-4" data-action="autocomplete:selected@window->rating#resetStars">
+              <button class="fas-btn" data-target="rating.one" data-action="click->rating#rate">
+                <i class="far fa-star"></i>
+              </button>
+              <button class="fas-btn" data-target="rating.two" data-action="click->rating#rate">
+                <i class="far fa-star"></i>
+              </button>
+              <button class="fas-btn" data-target="rating.three" data-action="click->rating#rate">
+                <i class="far fa-star"></i>
+              </button>
+              <button class="fas-btn" data-target="rating.four" data-action="click->rating#rate">
+                <i class="far fa-star"></i>
+              </button>
+              <button class="fas-btn mr-4" data-target="rating.five" data-action="click->rating#rate">
+                <i class="far fa-star"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <button class="details-toggler fas-btn mx-2" data-action="click->beer#showDetails">
+          <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="hidden hidden-details">
+          <div class="my-2 d-flex align-items-center">
+            <img class="beer-card-img mr-3" src="<%= beer.logo_url %>" alt="beer-logo">
+            <div class="row justify-content-start">
+              <div class="my-1 d-flex col-auto">
+                <div class="beer-card-detail-bubble mr-3" data-target="beer.abv"><%= beer.abv %>%</div>
+                <div class="beer-card-detail-bubble" data-target="beer.ibu"><%= beer.ibu&.zero? ? 'No' : beer.ibu %> IBU</div>
+              </div>
+              <div class="my-1 beer-card-subtitle col-md-6 col-12 align-self-center" data-target="beer.kind"><%= beer.kind %></div>
+              <div class="my-1 beer-card-text col-12"><%= beer.brewery_city + ", " + beer.brewery_country %></div>
+            </div>
+          </div>
+        </div>
+        <div class="hidden hidden-details beer-card-text" data-target="beer.description"><%= beer.description %></div>
+    </div>
+  <% end %>
+</div>

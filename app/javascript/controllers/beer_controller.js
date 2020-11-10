@@ -18,6 +18,41 @@ export default class extends Controller {
         this.fetchBeerInformation(beer)
     };
 
+    showDetails(event) {
+        const card = event.currentTarget.closest('.beer-card')
+        const targets = card.querySelectorAll('.hidden-details')
+        const caret = event.currentTarget.querySelector('svg')
+
+
+        this.resizeCard(card)
+        this.toggleHiddenDetails(targets)
+        this.toggleCaret(caret)
+    }
+
+    resizeCard(card) {
+        if (card.classList.contains('beer-card-expanded')) {
+            card.classList.remove('beer-card-expanded')
+            card.classList.add('beer-card-retracted')
+        } else {
+            card.classList.remove('beer-card-retracted')
+            card.classList.add('beer-card-expanded')
+        }
+    }
+
+    toggleHiddenDetails(targets) {
+        targets.forEach((target) => {
+            target.classList.toggle('hidden')
+        })
+    }
+
+    toggleCaret(caret) {
+        if (caret.dataset.icon === 'angle-down') {
+            caret.dataset.icon = 'angle-up'
+        } else {
+            caret.dataset.icon = 'angle-down'
+        }
+    }
+
     setExternalBeerId(beer) {
         this.bidFormTarget.value = beer['bid']
     }

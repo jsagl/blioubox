@@ -1,13 +1,26 @@
 .beer-card {
   background-color: white;
-  padding: 30px 40px;
   border-radius: 10px;
   box-shadow: 5px 5px 8px rgba(0,0,0,0.1), -1px -1px 5px rgba(0,0,0,0.1);
+  position: relative;
 }
 
-.beer-card-title {
-  font-size: 40px;
+.beer-card-expanded {
+  padding: 30px 40px;
+
+  .beer-card-title {
+    font-size: 40px;
+  }
 }
+
+.beer-card-retracted {
+  padding: 10px 20px;
+
+  .beer-card-title {
+    font-size: 24px;
+  }
+}
+
 
 .beer-card-subtitle {
   font-size: 16px;
@@ -63,17 +76,24 @@
   font-size: 24px;
 }
 
-.star-btn {
+.fas-btn {
   border: none;
   background-color: transparent;
   padding: 0;
 }
 
-.star-btn:focus {
+.fas-btn:focus {
   outline: 0;
 }
 
 .beer-card-rating svg {
   color: $complementary-color;
 
+}
+
+.details-toggler {
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  font-size: 20px;
 }
