@@ -15,26 +15,6 @@ class FavoritesController < ApplicationController
   private
 
   def set_beer!
-    @beer = Beer.find_by(bid: params[:bid].to_i) if params[:bid]
-    return if @beer
-
-    @beer = Beer.create!(beer_params)
-  end
-
-  def beer_params
-    params.permit(
-        :name,
-        :kind,
-        :description,
-        :abv,
-        :ibu,
-        :logo_url,
-        :beer_url,
-        :brewery_name,
-        :brewery_city,
-        :brewery_country,
-        :brewery_url,
-        :bid,
-    )
+    @beer = Beer.find_by(bid: params[:bid].to_i)
   end
 end

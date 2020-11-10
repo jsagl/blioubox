@@ -5,10 +5,8 @@ import {hideSpinner, toggleSpinner} from "../components/spinner";
 export default class extends Controller {
     static targets = [
         'information',
-        'name', 'kind', 'abv', 'brewery', 'logoUrl',
-        'location', 'description', 'ibu',
-        'nameForm', 'kindForm', 'breweryForm', 'logoUrlForm', 'beerUrlForm', 'abvForm',
-        'breweryUrlForm', 'countryForm', 'cityForm', 'descriptionForm', 'ibuForm', 'bidForm'
+        'name', 'kind', 'abv', 'brewery', 'logoUrl', 'location', 'description', 'ibu',
+        'bidForm'
     ];
 
     prepareBeerInformation(event) {
@@ -20,35 +18,22 @@ export default class extends Controller {
         this.fetchBeerInformation(beer)
     };
 
-    fillForm(beer) {
-
-        this.nameFormTarget.value = beer['name']
-        this.kindFormTarget.value = beer['kind']
-        this.abvFormTarget.value = beer['abv']
-        this.breweryFormTarget.value = beer['brewery']
-        this.beerUrlFormTarget.value = beer['beer_url']
-        this.logoUrlFormTarget.value = beer['logo_url']
+    setExternalBeerId(beer) {
         this.bidFormTarget.value = beer['bid']
-
-        this.breweryUrlFormTarget.value = beer['brewery_page_url']
-        this.countryFormTarget.value = beer['brewery_country']
-        this.cityFormTarget.value = beer['brewery_city']
-        this.descriptionFormTarget.value = beer['description']
-        this.ibuFormTarget.value = beer['ibu']
     }
 
-    presentBeer(beer) {
+    fillHTMLBeerDetails(beer) {
         this.nameTarget.innerHTML = beer['name']
         this.kindTarget.innerHTML = beer['kind']
         this.ibuTarget.innerHTML = beer['ibu'] == 0 ? `No IBU` : `${beer['ibu']} IBU`
         this.abvTarget.innerHTML = `${beer['abv']}%`
         this.descriptionTarget.innerHTML = beer['description']
-        this.breweryTarget.innerHTML = beer['brewery']
+        this.breweryTarget.innerHTML = beer['brewery_name']
         this.locationTarget.innerHTML = `${beer['brewery_city']}, ${beer['brewery_country']}`
         this.logoUrlTarget.src = beer['logo_url']
     }
 
-    displayBeer() {
+    showBeer() {
         this.informationTarget.classList.remove('hidden')
     }
 
@@ -66,10 +51,10 @@ export default class extends Controller {
             .then(
                 (response) => {
                     const details = response.data
-                    this.fillForm(details)
-                    this.presentBeer(details)
+                    this.setExternalBeerId(details)
+                    this.fillHTMLBeerDetails(details)
                     hideSpinner(spinner)
-                    this.displayBeer()
+                    this.showBeer()
                 }
             );
     }
