@@ -1,11 +1,30 @@
+body {
+  min-height: 100vh;
+  //background-image: url("../../images/background.svg");
+  //background-repeat: no-repeat;
+  //background-size: cover;
+}
+
 .blioubox-logo {
   margin-top: 20px;
   margin-left: 20px;
+  margin-bottom: 60px;
   height: 60px;
   width: 60px;
 }
 
 .search-container {
-  margin-top: 200px;
+  margin-top: 70px;
 }
+
+@media (max-width: 600px) {
+  .blioubox-logo {
+    margin-bottom: 30px;
+  }
+
+  .search-container {
+    margin-top: 40px;
+  }
+}
+
 

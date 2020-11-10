@@ -1,24 +1,40 @@
-<div>
+<div class="">
   <%= image_pack_tag 'media/images/blioubox_logo.png', class: 'blioubox-logo' %>
 </div>
 
-
-<div class="container search-container">
-  <div class="search-input-container" data-controller="autocomplete" data-target="autocomplete.full">
-    <div class="d-flex">
-      <div class="search-icon"><i class="fas fa-search"></i></div>
-      <input class="search-input" placeholder="Find a beer" data-target="autocomplete.field" />
-      <div class="search-cancel-btn-container search-cancel-hidden" data-target="autocomplete.cancel">
-        <button class="search-cancel-btn">Cancel</button>
-      </div>
+<div class="w-100 text-center" data-controller="banner">
+  <h1 class="banner-header"> Remembeer</h1>
+  <div class="banner-subtitle">
+    <div id="typed-banner" data-target="banner.typedStrings">
+      <p>Drink it.^1000 Find it.^1000 Rate it️.^1000 Save it.^1000</p>
     </div>
+    <span id="typed"></span>
   </div>
 </div>
 
-<br>
 
-<div class="container">
-    <div class="" data-controller="beer rating" data-action="autocomplete:selected@window->beer#prepareBeerInformation">
+
+<div class="container" data-controller="autocomplete beer rating" >
+    <div class="search-container">
+      <div class="search-input-container" data-target="autocomplete.full">
+        <div class="d-flex">
+          <div class="search-icon"><i class="fas fa-search"></i></div>
+          <input class="search-input" placeholder="Find a beer" data-target="autocomplete.field" data-action="input->beer#hideBeer" />
+          <div class="search-cancel-btn-container search-cancel-hidden" data-target="autocomplete.cancel">
+            <button class="search-cancel-btn">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <div>
+      <%= image_pack_tag 'media/images/undraw_party.svg' %>
+    </div>
+
+
+    <div class="" data-action="autocomplete:selected@window->beer#prepareBeerInformation">
       <div id="beer-information" class="hidden beer-card w-100" data-target="beer.information">
         <div class="">
           <div class="row justify-content-start">

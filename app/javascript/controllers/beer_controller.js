@@ -18,7 +18,7 @@ export default class extends Controller {
         }
 
         this.fetchBeerInformation(beer)
-    }
+    };
 
     fillForm(beer) {
 
@@ -52,7 +52,10 @@ export default class extends Controller {
     }
 
     hideBeer() {
-        this.informationTarget.classList.add('hidden')
+        console.log('hello')
+        if (!this.informationTarget.classList.contains('hidden')) {
+            this.informationTarget.classList.add('hidden')
+        }
     }
 
     fetchBeerInformation(beer) {

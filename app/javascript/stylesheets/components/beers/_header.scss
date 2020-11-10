@@ -1,0 +1,17 @@
+.banner-header {
+  font-size: 64px;
+  font-weight: bold;
+  color: $primary-color;
+}
+
+@media (max-width: 600px) {
+  .banner-header {
+    font-size: 40px;
+  }
+}
+
+.banner-subtitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: $complementary-color;
+}
