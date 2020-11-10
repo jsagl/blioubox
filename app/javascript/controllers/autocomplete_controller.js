@@ -9,7 +9,6 @@ export default class extends Controller {
         axios.get("/autocomplete", { params: { query } }).then((response) => {
             callback(response.data);
         });
-        // callback([{beer_name: 'hello'}])
     }
 
     connect() {
@@ -30,7 +29,6 @@ export default class extends Controller {
             },
         ]).on("autocomplete:selected", (event, suggestion, dataset, context) => {
             this.ac.autocomplete.setVal('');
-            // this.fullTarget.classList.add('hidden');
         }).on("autocomplete:closed", (event, suggestion, dataset, context) => {
             this.cancelTarget.classList.add('search-cancel-hidden')
             this.ac.autocomplete.setVal('');

@@ -5,6 +5,22 @@ class AutocompletesController < ApplicationController
     render json: partial_beers_presenter(beers)
   end
 
+  def beer_information
+    beer = Beer.find_by(bid: params[:bid].to_i) if params[:bid]
+
+    unless beer
+      brewery_details = call_brewery_data_service(params[:brewery])
+      complementary_beer_information = complementary_beer_information(params[:beer_url])
+      beer = Beer.create!(base_beer_params.merge(brewery_details, complementary_beer_information))
+    end
+
+    render json: beer
+    # render json: {
+    #     ibu: 10, description: "This is our unique version of an ancient style. A style as old as the ocean trade routes of the last centuries Great Ships. Not as old as the equator they had to cross twice enroute. Lagunitas IPA was our first seasonal way back in 1995. The recipe was formulated with malt and hops working together to balance it all out on your ‘buds so you can knock back more than one without wearing yourself out. Big on the aroma with a hoppy-sweet finish that’ll leave you wantin’ another sip.",
+    #     brewery_city: 'Paris', brewery_country: 'France'
+    # }
+  end
+
   private
 
   def call_beer_data_service(query)
@@ -28,14 +44,36 @@ class AutocompletesController < ApplicationController
     }
   end
 
-  def beer_presenter(beer)
-    partial_beer_presenter(beer).merge(
-        ibu: '',
-        description: '',
-        brewery_url: '',
-        country: '',
-        city: '',
+  def base_beer_params
+    permitted_params = params.permit(
+        :bid,
+        :name,
+        :kind,
+        :abv,
+        :logo_url,
+        :beer_url,
+        :brewery,
+        :brewery_id,
     )
+
+    {
+        bid: permitted_params[:bid]&.to_i,
+        name: permitted_params[:name],
+        kind: permitted_params[:kind],
+        abv: permitted_params[:abv]&.to_f,
+        logo_url: permitted_params[:logo_url],
+        beer_url: permitted_params[:beer_url],
+        brewery_name: permitted_params[:brewery],
+        external_brewery_id: permitted_params[:brewery_id]&.to_i,
+    }
+  end
+
+  def call_brewery_data_service(query)
+    BeerInformationProvider.brewery_information(query)
+  end
+
+  def complementary_beer_information(url)
+    BeerInformationProvider.parsed_beer_information(url)
   end
 end
 

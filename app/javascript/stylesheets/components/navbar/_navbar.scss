@@ -23,15 +23,20 @@
   padding: 8px 16px;
   border-radius: 16px;
   margin: 0px 10px;
+  text-decoration: none;
 }
 
 .navbar-button:hover {
   background-color: $primary-color-light;
   transition: 0.3s linear;
+  text-decoration: none;
+  color: white;
 }
 
 .navbar-button:focus {
   outline: 0;
   transition: 0s linear;
   box-shadow: 0 0 0 0.2rem $primary-color-shadow;
+  text-decoration: none;
+  color: white;
 }

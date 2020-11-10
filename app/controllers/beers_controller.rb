@@ -1,14 +1,4 @@
 class BeersController < ApplicationController
-  def index
-    @beers = Beer.all
-  end
-
-  def create
-    Beer.create!(permitted_params)
-
-    redirect_to root_path
-  end
-
   def external_beer_information
     # brewery_details = call_brewery_data_service(params[:brewery])
     # complementary_beer_information = parsed_beer_information(params[:beer_url])

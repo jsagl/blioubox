@@ -8,7 +8,7 @@ export default class extends Controller {
         'name', 'kind', 'abv', 'brewery', 'logoUrl',
         'location', 'description', 'ibu',
         'nameForm', 'kindForm', 'breweryForm', 'logoUrlForm', 'beerUrlForm', 'abvForm',
-        'breweryUrlForm', 'countryForm', 'cityForm', 'descriptionForm', 'ibuForm',
+        'breweryUrlForm', 'countryForm', 'cityForm', 'descriptionForm', 'ibuForm', 'bidForm'
     ];
 
     prepareBeerInformation(event) {
@@ -28,6 +28,7 @@ export default class extends Controller {
         this.breweryFormTarget.value = beer['brewery']
         this.beerUrlFormTarget.value = beer['beer_url']
         this.logoUrlFormTarget.value = beer['logo_url']
+        this.bidFormTarget.value = beer['bid']
 
         this.breweryUrlFormTarget.value = beer['brewery_page_url']
         this.countryFormTarget.value = beer['brewery_country']
@@ -61,10 +62,10 @@ export default class extends Controller {
     fetchBeerInformation(beer) {
         const spinner = toggleSpinner(this.informationTarget)
         axios
-            .get("/beers/external_beer_information", { params: beer })
+            .get("/autocomplete/beer_information", { params: beer })
             .then(
                 (response) => {
-                    const details = {...beer, ...response.data}
+                    const details = response.data
                     this.fillForm(details)
                     this.presentBeer(details)
                     hideSpinner(spinner)

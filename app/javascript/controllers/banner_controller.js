@@ -1,11 +1,13 @@
 import { Controller } from "stimulus"
 import Typed from 'typed.js';
 
+let typedInstance = null
+
 export default class extends Controller {
     static targets = [ "typedStrings" ]
 
     loadDynamicBannerText = (elementId) => {
-        new Typed('#typed', {
+        typedInstance = new Typed('#typed', {
             stringsElement: elementId,
             typeSpeed: 70,
             backDelay: 5000,
@@ -16,5 +18,9 @@ export default class extends Controller {
 
     connect() {
         this.loadDynamicBannerText(`#${this.typedStringsTarget.id}`)
+    }
+
+    disconnect() {
+        typedInstance.destroy()
     }
 }

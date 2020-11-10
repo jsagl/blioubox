@@ -1,5 +1,5 @@
 <div class="navbar-beer">
   <%= image_pack_tag 'media/images/remembeer_logo.svg', class: 'remembeer-logo' %>
-  <button class="navbar-button">Home</button>
-  <button class="navbar-button">Favorites</button>
+  <%= link_to "Home", root_path, class: "navbar-button" %>
+  <%= link_to "Favorites", favorites_path, class: "navbar-button" %>
 </div>
