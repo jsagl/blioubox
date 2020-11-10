@@ -1,20 +1,38 @@
 body {
-  min-height: 100vh;
-  //background-image: url("../../images/background.svg");
-  //background-repeat: no-repeat;
-  //background-size: cover;
+  background-image: url("../../images/background.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.blioubox-logo {
-  margin-top: 20px;
-  margin-left: 20px;
-  margin-bottom: 60px;
-  height: 60px;
-  width: 60px;
+.homepage-container {
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding-top: 200px;
+}
+
+#homepage-beer-search-container {
+  position: relative;
+  margin-top: 70px;
 }
 
 .search-container {
-  margin-top: 70px;
+  width: calc(100% - 30px);
+  position: absolute;
+}
+
+.beer-container {
+  width: calc(100% - 30px);
+  position: absolute;
+  top: 70px;
+}
+
+.img-container {
+  width: calc(100% - 30px);
+  position: absolute;
+  top: 80px;
+  display: flex;
+  justify-content: center;
+  z-index: -1;
 }
 
 @media (max-width: 600px) {
@@ -22,9 +40,7 @@ body {
     margin-bottom: 30px;
   }
 
-  .search-container {
+  #homepage-beer-search-container {
     margin-top: 40px;
   }
 }
-
-

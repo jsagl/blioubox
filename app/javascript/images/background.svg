@@ -10,16 +10,9 @@
  <g>
   <title>Layer 1</title>
   <ellipse stroke="#5956e9" ry="139" rx="153" id="svg_1" cy="584.45312" cx="21.5" stroke-width="1.5" fill="#5956e9"/>
-  <ellipse stroke="#5956e9" ry="22.6589" rx="23.43512" id="svg_3" cy="438.86707" cx="601.02132" stroke-width="1.5" fill="#5956e9"/>
-  <ellipse stroke="#5956e9" ry="31.27959" rx="31.36616" id="svg_4" cy="248.86704" cx="153.77988" stroke-width="1.5" fill="#5956e9"/>
   <ellipse stroke="#ffdc60" ry="40.68966" rx="41.37932" id="svg_6" cy="594.10563" cx="436.20689" stroke-width="1.5" fill="#ffdc60"/>
   <ellipse stroke="#ffdc60" ry="82.75863" rx="83.10347" id="svg_7" cy="142.38144" cx="800.00005" stroke-width="1.5" fill="#ffdc60"/>
-  <ellipse stroke="#ffdc60" ry="18.96552" rx="18.96552" id="svg_8" cy="428.93321" cx="195.86204" stroke-width="1.5" fill="#ffdc60"/>
-  <ellipse stroke="#fab8c4" ry="51.72415" rx="51.72414" id="svg_9" cy="103.76075" cx="2.41375" stroke-width="1.5" fill="#fab8c4"/>
-  <ellipse stroke="#fab8c4" ry="26.55173" rx="26.55173" id="svg_10" cy="1.34695" cx="475.17242" stroke-width="1.5" fill="#fab8c4"/>
-  <ellipse stroke="#fab8c4" ry="14.82759" rx="15.17241" id="svg_11" cy="326.17458" cx="483.79311" stroke-width="1.5" fill="#fab8c4"/>
-  <ellipse stroke="#fab8c4" ry="21.72415" rx="22.41378" id="svg_12" cy="543.41598" cx="754.48278" stroke-width="1.5" fill="#fab8c4"/>
   <ellipse stroke="#5956e9" ry="11.96925" rx="11.71098" id="svg_14" cy="33.69462" cx="729.29721" stroke-width="1.5" fill="#5956e9"/>
-  <ellipse stroke="#ffdc60" ry="13.10345" rx="12.75862" id="svg_15" cy="54.79523" cx="240.68964" stroke-width="1.5" fill="#ffdc60"/>
+  <ellipse stroke="#ffdc60" ry="13.10345" rx="12.75862" id="svg_15" cy="120.31248" cx="4.13789" stroke-width="1.5" fill="#ffdc60"/>
  </g>
 </svg>
