@@ -8,6 +8,12 @@
   align-items: center;
 }
 
+@media (max-width: 600px) {
+  .navbar-beer {
+    background-color: white;
+  }
+}
+
 .remembeer-logo {
   height: 60px;
   width: 60px;

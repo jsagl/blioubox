@@ -25,7 +25,7 @@ export default class extends Controller {
 
 
         this.resizeCard(card)
-        this.toggleHiddenDetails(targets)
+        // this.toggleHiddenDetails(targets)
         this.toggleCaret(caret)
     }
 

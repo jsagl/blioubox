@@ -1,9 +1,3 @@
-body {
-  background-image: url("../../images/background.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .homepage-container {
   min-height: 100vh;
   overflow-x: hidden;
@@ -36,8 +30,8 @@ body {
 }
 
 @media (max-width: 600px) {
-  .blioubox-logo {
-    margin-bottom: 30px;
+  .homepage-container {
+    padding-top: 150px;
   }
 
   #homepage-beer-search-container {

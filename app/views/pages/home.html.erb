@@ -34,7 +34,7 @@
 
 
     <div class="beer-container" data-action="autocomplete:selected@window->beer#prepareBeerInformation">
-      <div id="beer-information" class="hidden beer-card beer-card-expanded w-100" data-target="beer.information">
+      <div id="beer-information" class="hidden beer-card beer-card-show w-100" data-target="beer.information">
         <div class="">
           <div class="row justify-content-start">
             <div class="beer-card-title align-self-center col-auto" data-target="beer.name"></div>
@@ -55,7 +55,7 @@
 
           <%= form_with(url: '/favorites', method: :post, local: true) do |f| %>
             <div class="row justify-content-end align-items-center">
-              <div class="my-3 beer-card-rating col-auto" data-action="autocomplete:selected@window->rating#resetStars">
+              <div class="my-3 beer-card-rating-show col-auto" data-action="autocomplete:selected@window->rating#resetStars">
                 <button class="fas-btn" data-target="rating.one" data-action="click->rating#rate">
                   <i class="far fa-star"></i>
                 </button>

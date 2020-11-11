@@ -1,3 +1,8 @@
 .favorites-container {
-  padding-top: 180px;
+  position: fixed;
+  top: 15vh;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 70vh;
+  overflow-y: auto;
 }

@@ -6,6 +6,13 @@
 body {
   background-color: white;
   font-family: 'Open Sans', sans-serif;
+  background-image: url("../images/background.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.page-container {
+  min-height: 100vh;
 }
 
 .hidden {
