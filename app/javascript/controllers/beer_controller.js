@@ -46,11 +46,13 @@ export default class extends Controller {
     }
 
     toggleCaret(caret) {
-        if (caret.dataset.icon === 'angle-down') {
-            caret.dataset.icon = 'angle-up'
-        } else {
-            caret.dataset.icon = 'angle-down'
-        }
+        setTimeout(() => {
+            if (caret.dataset.icon === 'angle-down') {
+                caret.dataset.icon = 'angle-up'
+            } else {
+                caret.dataset.icon = 'angle-down'
+            }
+        }, 150)
     }
 
     setExternalBeerId(beer) {
