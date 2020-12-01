@@ -1,36 +1,91 @@
 <div class="page-container">
 
   <div class="container favorites-container" data-controller="beer">
-    <% @beers.each do |beer| %>
+    <% @favorites.each do |favorite| %>
       <div class="my-2 beer-card beer-card-list-item beer-card-retracted w-100">
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="row col-9 mb-1">
-              <div class="beer-card-title align-self-center col-12 col-md-auto"><%= beer.name %></div>
-              <div class="beer-card-subtitle align-self-center col-12 col-md-auto"><%= beer.brewery_name %></div>
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <div class="row col-9">
+              <div class="beer-card-title align-self-center col-12 col-md-auto align-items-center d-flex justify-content-start">
+                <div>
+                  <span class="fa-stack fa-3x beer-card-rating-list">
+                    <i class="fa fa-star fa-stack-2x"></i>
+                    <span class="fa fa-stack-1x fa-layers-text" data-fa-transform="down-14 right-19.5"><%= favorite.rating&.to_i %></span>
+                  </span>
+                </div>
+                <%= favorite.beer.name %>
+              </div>
+              <div class="beer-card-subtitle align-self-center col-12 col-md-auto"><%= favorite.beer.brewery_name %></div>
             </div>
-            <button class="fas-btn col-2 beer-card-rating-list" data-target="rating.five">
-              <i class="fa fa-star"></i>
-            </button>
-            <button class="details-toggler col-1 fas-btn" data-action="click->beer#showDetails">
-              <i class="fas fa-angle-down"></i>
-            </button>
+            <div class="col-3 d-flex justify-content-end align-items-center action-buttons">
+              <%= link_to favorite_path(favorite), class: "fas-btn", method: :delete do %>
+                <i class="far fa-trash-alt"></i>
+              <% end %>
+              <button class="fas-btn" data-toggle="modal" data-target="#ratingModal">
+                <i class="far fa-edit"></i>
+              </button>
+              <button class="details-toggler fas-btn" data-action="click->beer#showDetails">
+                <i class="fas fa-angle-down"></i>
+              </button>
+            </div>
           </div>
           <div class="hidden-details">
             <div class="my-2 d-flex align-items-center">
-              <img class="beer-card-img mr-3" src="<%= beer.logo_url %>" alt="beer-logo">
+              <img class="beer-card-img mr-3" src="<%= favorite.beer.logo_url %>" alt="beer-logo">
               <div class="row justify-content-start">
                 <div class="my-1 d-flex col-auto">
-                  <div class="beer-card-detail-bubble mr-3" data-target="beer.abv"><%= beer.abv %>%</div>
-                  <div class="beer-card-detail-bubble" data-target="beer.ibu"><%= beer.ibu&.zero? ? 'No' : beer.ibu %> IBU</div>
+                  <div class="beer-card-detail-bubble mr-3" data-target="beer.abv"><%= favorite.beer.abv %>%</div>
+                  <div class="beer-card-detail-bubble" data-target="beer.ibu"><%= favorite.beer.ibu&.zero? ? 'No' : favorite.beer.ibu %> IBU</div>
                 </div>
-                <div class="my-1 beer-card-subtitle col-md-6 col-12 align-self-center" data-target="beer.kind"><%= beer.kind %></div>
-                <div class="my-1 beer-card-text col-12"><%= beer.brewery_city + ", " + beer.brewery_country %></div>
+                <div class="my-1 beer-card-subtitle col-md-6 col-12 align-self-center" data-target="beer.kind"><%= favorite.beer.kind %></div>
+                <div class="my-1 beer-card-text col-12"><%= favorite.beer.brewery_city + ", " + favorite.beer.brewery_country %></div>
               </div>
             </div>
           </div>
-          <div class="hidden-details beer-card-text" data-target="beer.description"><%= beer.description %></div>
+          <div class="hidden-details beer-card-text" data-target="beer.description"><%= favorite.beer.description %></div>
       </div>
     <% end %>
   </div>
 </div>
 
+<div class="modal fade" id="ratingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>-->
+<!--        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--          <span aria-hidden="true">&times;</span>-->
+<!--        </button>-->
+<!--      </div>-->
+      <div class="modal-body">
+        <%#= form_with(url: '/favorites', method: :post, local: true) do |f| %>
+          <div class="row justify-content-end align-items-center" data-controller="rating">
+            <div class="my-3 beer-card-rating-show col-auto">
+              <button class="fas-btn" data-target="rating.one" data-action="click->rating#rate">
+                <i class="far fa-star"></i>
+              </button>
+              <button class="fas-btn" data-target="rating.two" data-action="click->rating#rate">
+                <i class="far fa-star"></i>
+              </button>
+              <button class="fas-btn" data-target="rating.three" data-action="click->rating#rate">
+                <i class="far fa-star"></i>
+              </button>
+              <button class="fas-btn" data-target="rating.four" data-action="click->rating#rate">
+                <i class="far fa-star"></i>
+              </button>
+              <button class="fas-btn" data-target="rating.five" data-action="click->rating#rate">
+                <i class="far fa-star"></i>
+              </button>
+
+              <input data-target="rating.form">
+              <%#= f.hidden_field :rating, placeholder: 'Rating', data: {target: "rating.form"} %>
+              <%#= f.hidden_field :bid, data: {target: "beer.bidForm"} %>
+
+            </div>
+            <button data-target="rating.submitButton"></button>
+            <%#= f.submit 'Add to favorites', class: "my-3 beer-card-button col-auto", disabled: true, data: {target: "rating.submitButton"} %>
+        <%# end %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

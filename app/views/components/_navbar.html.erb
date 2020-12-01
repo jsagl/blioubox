@@ -1,5 +1,15 @@
-<div class="navbar-beer">
-  <%= image_pack_tag 'media/images/remembeer_logo.svg', class: 'remembeer-logo' %>
-  <%= link_to "Home", root_path, class: "navbar-button" %>
-  <%= link_to "Favorites", favorites_path, class: "navbar-button" %>
+<div class="navbar-beer d-flex justify-content-between align-items-center">
+  <div class="">
+    <%= image_pack_tag 'media/images/remembeer_logo.svg', class: 'remembeer-logo' %>
+    <%= link_to "Home", root_path, class: "navbar-button" %>
+    <% if current_user %>
+      <%= link_to "Favorites", favorites_path, class: "navbar-button" %>
+      <%= link_to "Sign out", destroy_user_session_path, class: "navbar-button", method: :delete %>
+    <% else %>
+      <%= link_to "Sign up", new_user_registration_path, class: "navbar-button" %>
+      <%= link_to "Sign in", new_user_session_path, class: "navbar-button" %>
+    <% end %>
+  </div>
+  <div>
+  </div>
 </div>

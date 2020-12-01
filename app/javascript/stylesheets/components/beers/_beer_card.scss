@@ -98,7 +98,26 @@
 }
 
 .beer-card-rating-list {
-  font-size: 16px;
+  font-size: 10px !important;
+  margin-right: 10px;
+  .fa-stack-1x, .fa-stack-2x {
+    top: 5px !important;
+  }
+}
+
+.action-buttons {
+  .fas-btn {
+    margin-left: 20px;
+    svg {
+      color: $dark-grey;
+    }
+  }
+
+  .fas-btn:hover {
+    svg {
+      color: $mid-grey;
+    }
+  }
 }
 
 .fas-btn {
